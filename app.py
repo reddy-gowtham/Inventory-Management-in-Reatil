@@ -335,6 +335,8 @@ def delete_product(product_id):
     return jsonify({"message": "Product deleted successfully."})
 
 
+# Initialize database for Gunicorn
+init_db()
+
 if __name__ == "__main__":
-    init_db()
     app.run(debug=True)
