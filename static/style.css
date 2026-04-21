@@ -1,0 +1,260 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #222;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #1f4e79, #2e86de);
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+header p {
+    margin-top: 8px;
+    font-size: 15px;
+}
+
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.welcome-text {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.logout-btn {
+    background: white;
+    color: #1f4e79;
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.logout-btn:hover {
+    background: #e9f2fb;
+}
+
+/* Sections */
+.form-section,
+.table-section {
+    width: 90%;
+    margin: 25px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.form-section h2,
+.table-section h2 {
+    margin-bottom: 15px;
+    color: #1f4e79;
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+}
+
+form input,
+form button {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+form button {
+    background: #2e86de;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+form button:hover {
+    background: #1f6fc1;
+}
+
+#message {
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    overflow-x: auto;
+    display: block;
+}
+
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+table th {
+    background: #1f4e79;
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+table tr:nth-child(even) {
+    background: #f9fbfd;
+}
+
+.safe {
+    color: green;
+    font-weight: bold;
+}
+
+.danger {
+    color: red;
+    font-weight: bold;
+}
+
+.delete-btn {
+    background: #e74c3c;
+    color: white;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background: #c0392b;
+}
+
+.update-btn {
+    background: #2e86de;
+    color: white;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.update-btn:hover {
+    background: #1f6fc1;
+}
+
+.sales-update-box {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+}
+
+.sales-input {
+    width: 100px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* Login + Register */
+.login-body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #1f4e79, #2e86de);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background: white;
+    width: 360px;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 10px;
+    color: #1f4e79;
+}
+
+.login-container p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.login-form input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.login-form button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #2e86de;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+    background: #1f6fc1;
+}
+
+.error-box {
+    background: #fde8e8;
+    color: #b91c1c;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.switch-link {
+    margin-top: 16px;
+    font-size: 14px;
+}
+
+.switch-link a {
+    color: #1f4e79;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.switch-link a:hover {
+    text-decoration: underline;
+}
