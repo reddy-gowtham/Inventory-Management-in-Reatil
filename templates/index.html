@@ -4,91 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Pricing & Inventory Optimization</title>
+    <!-- Modern UI Redesign: Inter font is imported in style.css -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
     <header>
         <div>
-            <h1>Dynamic Pricing & Inventory Optimization in Retail</h1>
-            <p>AI-based demand prediction, pricing suggestion, and stock optimization</p>
+            <h1>Retail AI Optimization</h1>
+            <p>Smart demand prediction, pricing suggestion, and stock management</p>
         </div>
 
         <div class="top-right">
-            <span class="welcome-text">Welcome, {{ username }}</span>
+            <span class="welcome-text">Hi, {{ username }}</span>
             <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
         </div>
     </header>
 
-    <section class="form-section">
-        <h2>Add New Product</h2>
-        <form id="productForm">
-            <input type="text" name="name" placeholder="Product Name" required>
-            <input type="text" name="category" placeholder="Category" required>
-            <input type="number" step="0.01" name="base_price" placeholder="Base Price" required>
-            <input type="number" name="stock" placeholder="Current Stock" required>
-            <input type="text" name="sales_history" placeholder="Last 7 Days Sales (e.g. 10,12,15,14,13,16,18)" required>
-            <button type="submit">Add Product</button>
-        </form>
-        <p id="message"></p>
-    </section>
+    <div class="container">
+        <section class="form-section">
+            <h2>Add New Product</h2>
+            <form id="productForm">
+                <input type="text" name="name" placeholder="Product Name" required>
+                <input type="text" name="category" placeholder="Category" required>
+                <input type="number" step="0.01" name="base_price" placeholder="Base Price" required>
+                <input type="number" name="stock" placeholder="Current Stock" required>
+                <input type="text" name="sales_history" placeholder="Last 7 Days Sales (e.g. 10,12,15...)" required>
+                <button type="submit">Add Product</button>
+            </form>
+            <p id="message"></p>
+        </section>
 
-    <section class="table-section">
-        <h2>Retail Dashboard</h2>
+        <section class="table-section">
+            <h2>Retail Dashboard</h2>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Product</th>
-                    <th>Category</th>
-                    <th>Base Price</th>
-                    <th>Current Stock</th>
-                    <th>Sales History</th>
-                    <th>Predicted Demand</th>
-                    <th>Suggested Price</th>
-                    <th>Recommended Stock</th>
-                    <th>Reorder Qty</th>
-                    <th>Status</th>
-                    <th>Update Today's Sales</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Base Price</th>
+                            <th>Stock</th>
+                            <th>Sales History</th>
+                            <th>Predicted Demand</th>
+                            <th>Suggested Price</th>
+                            <th>Recommended Stock</th>
+                            <th>Reorder Qty</th>
+                            <th>Status</th>
+                            <th>Update Sales</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
 
-            <tbody>
-                {% for p in products %}
-                <tr>
-                    <td>{{ p.id }}</td>
-                    <td>{{ p.name }}</td>
-                    <td>{{ p.category }}</td>
-                    <td>₹{{ p.base_price }}</td>
-                    <td>{{ p.stock }}</td>
-                    <td>{{ p.sales_history }}</td>
-                    <td>{{ p.predicted_demand }}</td>
-                    <td>₹{{ p.suggested_price }}</td>
-                    <td>{{ p.recommended_stock }}</td>
-                    <td>{{ p.reorder_qty }}</td>
-                    <td>
-                        {% if p.status == "Reorder Needed" %}
-                            <span class="danger">{{ p.status }}</span>
-                        {% else %}
-                            <span class="safe">{{ p.status }}</span>
-                        {% endif %}
-                    </td>
-                    <td>
-                        <div class="sales-update-box">
-                            <input type="number" id="sale-{{ p.id }}" placeholder="Today's sale" min="0" class="sales-input">
-                            <button class="update-btn" onclick="updateSales({{ p.id }})">Update</button>
-                        </div>
-                    </td>
-                    <td>
-                        <button class="delete-btn" onclick="deleteProduct({{ p.id }})">Delete</button>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </section>
+                    <tbody>
+                        {% for p in products %}
+                        <tr>
+                            <td>{{ p.id }}</td>
+                            <td style="font-weight: 500; color: #fff;">{{ p.name }}</td>
+                            <td>{{ p.category }}</td>
+                            <td>₹{{ p.base_price }}</td>
+                            <td>{{ p.stock }}</td>
+                            <td>{{ p.sales_history }}</td>
+                            <td>{{ p.predicted_demand }}</td>
+                            <td style="color: #60a5fa; font-weight: 600;">₹{{ p.suggested_price }}</td>
+                            <td>{{ p.recommended_stock }}</td>
+                            <td>{{ p.reorder_qty }}</td>
+                            <td>
+                                {% if p.status == "Reorder Needed" %}
+                                    <span class="status-badge danger">{{ p.status }}</span>
+                                {% else %}
+                                    <span class="status-badge safe">{{ p.status }}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="sales-update-box">
+                                    <input type="number" id="sale-{{ p.id }}" placeholder="Today" min="0" class="sales-input">
+                                    <button class="update-btn" onclick="updateSales({{ p.id }})">Update</button>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="delete-btn" onclick="deleteProduct({{ p.id }})">Delete</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
 
     <script>
         const form = document.getElementById("productForm");
@@ -96,9 +101,7 @@
 
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
-
             const formData = new FormData(form);
-
             const response = await fetch("/add_product", {
                 method: "POST",
                 body: formData
@@ -108,14 +111,14 @@
 
             if (response.ok) {
                 message.textContent = result.message;
-                message.style.color = "green";
+                message.style.color = "#10b981"; // success green
                 form.reset();
                 setTimeout(() => {
                     window.location.reload();
                 }, 700);
             } else {
                 message.textContent = result.message;
-                message.style.color = "red";
+                message.style.color = "#ef4444"; // danger red
             }
         });
 
@@ -137,10 +140,11 @@
             });
 
             const result = await response.json();
-            alert(result.message);
-
+            
             if (response.ok) {
                 window.location.reload();
+            } else {
+                alert(result.message);
             }
         }
 
@@ -153,7 +157,6 @@
             });
 
             const result = await response.json();
-            alert(result.message);
             window.location.reload();
         }
     </script>
